@@ -10,18 +10,17 @@
 window.onload = function() {
     var emulator = new V86({
         wasm_path: "build/v86.wasm",
-        memory_size: 256 * 1024 * 1024,   // 256MB
+        memory_size: 256 * 1024 * 1024,
         vga_memory_size: 8 * 1024 * 1024,
         screen_container: document.getElementById("screen_container"),
         bios: { url: "bios/seabios.bin" },
         vga_bios: { url: "bios/vgabios.bin" },
         cdrom: { url: "images/your-os.iso" },  
-        boot_order: 0x123, // 全角スペースを修正
-        
+        boot_order: 0x123,
         autostart: true,
 
-        // 👇 ネットワーク有効化のための設定（ここを追加）
-        network_relay_url: "wss://relay.widgetry.org/", 
+        // 👇 外部サイトへの通信を許可してくれる特殊なプロキシに変更します
+        network_relay_url: "wss://wisp.mercurywork.shop/", 
         net_device: true
     });
 };
