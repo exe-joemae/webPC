@@ -13,12 +13,7 @@ window.onload = function() {
         screen_container: document.getElementById("screen_container"),
         bios: { url: "bios/seabios.bin" },
         vga_bios: { url: "bios/vgabios.bin" },
-        
-        // 例1: FreeDOS（軽量）
-        // hda: { url: "images/freedos.img" },  // イメージを後で追加
-        
-        // 例2: Alpine Linux（おすすめ）
-        // filesystem: { ... } または cdrom でISO
+        hda: { url: "images/your-os.iso" },  
         
         autostart: true,
     });
