@@ -1,6 +1,8 @@
 <!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
 <title>私のブラウザPC - v86</title>
-
 <script src="build/libv86.js"></script>
 <script>
 "use strict";
@@ -8,18 +10,24 @@
 window.onload = function() {
     var emulator = new V86({
         wasm_path: "build/v86.wasm",
-        memory_size: 256 * 1024 * 1024,   // 256MB（ブラウザのメモリ次第で調整）
+        memory_size: 256 * 1024 * 1024,   // 256MB
         vga_memory_size: 8 * 1024 * 1024,
         screen_container: document.getElementById("screen_container"),
         bios: { url: "bios/seabios.bin" },
         vga_bios: { url: "bios/vgabios.bin" },
         cdrom: { url: "images/your-os.iso" },  
-        boot_order :　0x123,
+        boot_order: 0x123, // 全角スペースを修正
         
         autostart: true,
+
+        // 👇 ネットワーク有効化のための設定（ここを追加）
+        network_relay_url: "wss://relay.widgetry.org/", 
+        net_device: true
     });
 };
 </script>
+</head>
+<body>
 
 <div id="screen_container" style="width: 1920px; height: 1080px; border: 2px solid #000; background: black;">
     <div style="white-space: pre; font: 11px monospace; line-height: 14px; color: #0f0;"></div>
@@ -27,3 +35,6 @@ window.onload = function() {
 </div>
 
 <p>マウスをクリックしてフォーカス → Ctrl+Alt+G でマウス解放</p>
+
+</body>
+</html>
