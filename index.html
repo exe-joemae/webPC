@@ -1,0 +1,33 @@
+<!doctype html>
+<title>私のブラウザPC - v86</title>
+
+<script src="build/libv86.js"></script>
+<script>
+"use strict";
+
+window.onload = function() {
+    var emulator = new V86({
+        wasm_path: "build/v86.wasm",
+        memory_size: 256 * 1024 * 1024,   // 256MB（ブラウザのメモリ次第で調整）
+        vga_memory_size: 8 * 1024 * 1024,
+        screen_container: document.getElementById("screen_container"),
+        bios: { url: "bios/seabios.bin" },
+        vga_bios: { url: "bios/vgabios.bin" },
+        
+        // 例1: FreeDOS（軽量）
+        // hda: { url: "images/freedos.img" },  // イメージを後で追加
+        
+        // 例2: Alpine Linux（おすすめ）
+        // filesystem: { ... } または cdrom でISO
+        
+        autostart: true,
+    });
+};
+</script>
+
+<div id="screen_container" style="width: 800px; height: 600px; border: 2px solid #000; background: black;">
+    <div style="white-space: pre; font: 14px monospace; line-height: 14px; color: #0f0;"></div>
+    <canvas style="display: none"></canvas>
+</div>
+
+<p>マウスをクリックしてフォーカス → Ctrl+Alt+G でマウス解放</p>
